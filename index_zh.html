@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="KGAR(RITSUTO) WEBSITE - 展示个人作品、程序、人工语言、世界观等的网站" />
+    <title>KGAR(RITSUTO) WEBSITE</title>
+
+    <style>
+        :root {
+            --background: #f5f5f5;
+            --surface: #ffffff;
+            --text: #222222;
+            --sub-text: #777777;
+            --border: #dddddd;
+            --accent: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            background: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .lang-switcher {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .lang-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 72px;
+            height: 34px;
+            padding: 0 14px;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            color: var(--sub-text);
+            transition: all 0.2s ease;
+        }
+
+        .lang-link.active {
+            background: var(--text);
+            color: #fff;
+        }
+
+        .lang-link:hover {
+            opacity: 0.8;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            font-size: 14px;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        nav a:hover {
+            opacity: 0.5;
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: calc(100vh - 70px);
+            display: flex;
+            align-items: center;
+            padding: 80px 8%;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-small {
+            color: var(--sub-text);
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 10vw, 120px);
+            line-height: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            color: var(--sub-text);
+            margin-bottom: 35px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 25px;
+            border: 1px solid var(--accent);
+            background: var(--accent);
+            color: #fff;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .button+.button {
+            margin-left: 12px;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            opacity: 0.8;
+        }
+
+        /* Section */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 40px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 60px;
+        }
+
+        .section-number {
+            color: var(--sub-text);
+            font-size: 13px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            letter-spacing: 0.1em;
+        }
+
+        /* About */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+        }
+
+        .about h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            color: var(--sub-text);
+        }
+
+        /* Works */
+        .works {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .work-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .work-image {
+            aspect-ratio: 16 / 10;
+            width: 100%;
+            overflow: hidden;
+            background: #dddddd;
+            position: relative;
+        }
+
+        .work-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .work-card:hover .work-image img {
+            transform: scale(1.05);
+        }
+
+        .image-error {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dddddd;
+            color: #666666;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+        }
+
+        .work-content {
+            padding: 25px;
+        }
+
+        .work-category {
+            color: var(--sub-text);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+        }
+
+        .work-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .work-content p {
+            color: var(--sub-text);
+            font-size: 14px;
+        }
+
+        .work-link {
+            display: inline-block;
+            margin-top: 18px;
+            font-size: 13px;
+            font-weight: bold;
+            border-bottom: 1px solid var(--text);
+        }
+
+        /* Contact */
+        .contact-box {
+            padding: 60px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+
+        .contact-box h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            color: var(--sub-text);
+            margin-bottom: 25px;
+        }
+
+        /* Footer */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px;
+            background: var(--text);
+            color: #fff;
+            font-size: 13px;
+        }
+
+        .side-note {
+            margin: 40px auto;
+            padding: 20px;
+            max-width: 800px;
+            border: 1px solid #ddd;
+            background: #fafafa;
+            color: #650;
+            font-size: 13px;
+        }
+
+        @media (max-width: 800px) {
+            header {
+                padding: 0 20px;
+                height: auto;
+                flex-wrap: wrap;
+                padding-top: 18px;
+                padding-bottom: 18px;
+                gap: 12px;
+            }
+
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 60px 25px;
+            }
+
+            section {
+                padding: 80px 25px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .works {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-box {
+                padding: 35px 25px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="#top" class="logo">KGAR(RITSUTO) WEBSITE</a>
+
+        <div class="header-right">
+            <nav aria-label="主菜单">
+                <a href="#about">ABOUT</a>
+                <a href="#works">WORKS</a>
+                <a href="#contact">CONTACT</a>
+            </nav>
+
+            <div class="lang-switcher" aria-label="语言选择">
+                <a href="index.html" class="lang-link" aria-label="Japanese page">Japanese</a>
+                <a href="index_jv.html" class="lang-link" aria-label="Javanese page">Javanese</a>
+                <a href="index_en.html" class="lang-link" aria-label="English page">English</a>
+                <a href="index_sp.html" class="lang-link" aria-label="Shellup page">Shellup</a>
+                <a href="index_fakezh.html" class="lang-link" aria-label="伪中国语">伪中国语</a>
+                <a href="index_zh.html" class="lang-link active" aria-label="中文">中文</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="top">
+        <div class="hero">
+            <div class="hero-content">
+                <p class="hero-small">WELCOME TO KGAR(RITSUTO) WEBSITE</p>
+
+                <h1>
+                    KGAR(RITSUTO)<br />
+                    WEBSITE
+                </h1>
+
+                <p class="hero-description">
+                    这是用于介绍我自己的作品、程序、人工语言、游戏以及世界观等内容的个人主页。
+                </p>
+
+                <a href="#works" class="button">查看作品 →</a>
+            </div>
+        </div>
+
+        <section id="about">
+            <div class="section-title">
+                <span class="section-number">01</span>
+                <h2>ABOUT</h2>
+            </div>
+
+            <div class="about">
+                <div>
+                    <h3>关于本站</h3>
+                    <p>
+                        你好，我是 kgar(ritsuto)。<br /><br />
+                        在这个网站上，我展示了自己创作的人工语言、网站、程序、游戏以及世界观等内容。
+                    </p>
+                </div>
+
+                <div>
+                    <h3>PROFILE</h3>
+                    <p>
+                        NAME : KGAR(RITSUTO) <br />
+                        FIELD : PROGRAMMING / CREATIVE / ART <br />
+                        LOCATION : JAPAN <br />
+                        SPEAKABLE LANGUAGE : JAPANESE / ENGLISH / <a href="#works">谢鲁阿普语</a>
+                    </p>
+                </div>
+
+                <div>
+                    <h3>关于本站的开源协议</h3>
+                    <p>
+                        本网站的源代码基于 MIT 许可证公开。<br />
+                        这意味着任何人都可以自由利用本站的源代码。<br /><br />
+                        但是，本站所刊载的图像、文章、人工语言、原创文字以及其他创作内容，均不属于源代码 MIT 许可证的范围（存在例外情况）。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="works">
+            <div class="section-title">
+                <span class="section-number">02</span>
+                <h2>WORKS</h2>
+            </div>
+
+            <div class="works"></div>
+        </section>
+
+        <section id="contact">
+            <div class="section-title">
+                <span class="section-number">03</span>
+                <h2>CONTACT</h2>
+            </div>
+
+            <div class="contact-box">
+                <h3>Let's Connect.</h3>
+                <p>附上了社交媒体与平台的相关链接。</p>
+
+                <a href="https://note.com/kgar_1853" target="_blank" rel="noopener noreferrer" class="button">
+                    Note →
+                </a>
+
+                <a href="https://github.com/rits1019c1" target="_blank" rel="noopener noreferrer" class="button">
+                    GitHub →
+                </a>
+            </div>
+        </section>
+
+        <div class="side-note">
+            <p>
+                本网站是基于 <a href="https://shun240523-stack.github.io/shun-web/#works" target="_blank"
+                    rel="noopener noreferrer">shun</a> 制作的网站修改而成的。
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 KGAR(RITSUTO) WEBSITE</p>
+        <a href="#top">返回页首 ↑</a>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const currentPage = window.location.pathname.split("/").pop() || "index_zh.html";
+            const langLinks = document.querySelectorAll(".lang-link");
+
+            langLinks.forEach((link) => {
+                const target = link.getAttribute("href");
+                const isActive = target === currentPage;
+                link.classList.toggle("active", isActive);
+            });
+
+            const worksContainer = document.querySelector(".works");
+
+            if (!worksContainer) return;
+
+            const works = [
+                {
+                    title: "谢鲁阿普语",
+                    description: "谢鲁阿普语 语是我和 shun 正在共同创作的语言。语法与日语较为接近。",
+                    image: "./images/shellup.jpg",
+                    link: "https://note.com/kgar_1853/n/n70a810493042",
+                    category: "Language",
+                },
+                {
+                    title: "SHUN WEBSITE",
+                    description: "和我一起创作语言与世界观的朋友的网站。",
+                    image: "images/test.png",
+                    link: "https://shun240523-stack.github.io/shun-web/",
+                    category: "Website",
+                },
+                {
+                    title: "东历2045",
+                    description: "shun 和我共同构筑的世界观官方网站。",
+                    image: "https://ec2045.github.io/symbols/疑問図鑑_001.png",
+                    link: "https://ec2045.github.io",
+                    category: "Website",
+                },
+            ];
+
+            const createErrorPlaceholder = (img) => {
+                const errorDiv = document.createElement("div");
+                errorDiv.className = "image-error";
+                errorDiv.textContent = "IMAGE NOT FOUND";
+                img.parentNode.replaceChild(errorDiv, img);
+            };
+
+            const createWorkCard = (work) => {
+                const article = document.createElement("article");
+                article.className = "work-card";
+
+                article.innerHTML = `
+            <div class="work-image">
+              <img src="${work.image}" alt="${work.title}" loading="lazy" />
+            </div>
+
+            <div class="work-content">
+              <p class="work-category">${work.category || "No category"}</p>
+              <h3>${work.title}</h3>
+              <p>${work.description}</p>
+              <a href="${work.link}" class="work-link" target="_blank" rel="noopener noreferrer">
+                ${work.link ? "VIEW PROJECT →" : "Not available"}
+              </a>
+            </div>
+          `;
+
+                const img = article.querySelector("img");
+                if (img) {
+                    img.addEventListener("error", () => createErrorPlaceholder(img));
+                }
+
+                return article;
+            };
+
+            works.forEach((work) => {
+                worksContainer.appendChild(createWorkCard(work));
+            });
+        });
+    </script>
+</body>
+
+</html>
