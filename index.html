@@ -108,14 +108,23 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-width: 72px;
+            min-width: 62px;
             height: 34px;
-            padding: 0 14px;
+            padding: 0 10px;
             font-size: 12px;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.05em;
             font-weight: 600;
             color: var(--sub-text);
             transition: all 0.2s ease;
+        }
+
+        .lang-link.active {
+            background: var(--text);
+            color: #ffffff;
+        }
+
+        .lang-link:hover {
+            opacity: 0.8;
         }
 
         .logo {
@@ -368,6 +377,7 @@
                 padding: 18px 16px;
                 background: rgba(255, 255, 255, 0.97);
                 border: 1px solid var(--border);
+                border-radius: 16px;
                 box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
             }
 
@@ -388,7 +398,7 @@
             .lang-switcher {
                 flex-wrap: wrap;
                 justify-content: center;
-                border-radius: 18px;
+                border-radius: 16px;
             }
 
             .lang-link {
@@ -445,6 +455,7 @@
                 <a href="index.html" class="lang-link active" aria-label="Japanese page">Japanese</a>
                 <a href="index_jv.html" class="lang-link" aria-label="Javanese page">Javanese</a>
                 <a href="index_en.html" class="lang-link" aria-label="English page">English</a>
+                <a href="index_ko.html" class="lang-link" aria-label="Korean page">한국어</a>
                 <a href="index_sp.html" class="lang-link" aria-label="Shellup page">Shellup</a>
                 <a href="index_fakezh.html" class="lang-link" aria-label="偽中国語">偽中国語</a>
                 <a href="index_zh.html" class="lang-link" aria-label="中文">中文</a>

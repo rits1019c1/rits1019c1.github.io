@@ -1,12 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const currentPage = window.location.pathname.split("/").pop() || "index.html";
-    const langLinks = document.querySelectorAll(".lang-link");
+    let currentPage = window.location.pathname.split("/").pop();
+    if (!currentPage || currentPage === "") {
+        currentPage = "index.html";
+    }
 
+    const langLinks = document.querySelectorAll(".lang-link");
+    let matched = false;
     langLinks.forEach((link) => {
         const target = link.getAttribute("href");
-        const isActive = target === currentPage;
-        link.classList.toggle("active", isActive);
+        if (target === currentPage) {
+            matched = true;
+        }
     });
+
+    if (matched) {
+        langLinks.forEach((link) => {
+            const target = link.getAttribute("href");
+            link.classList.toggle("active", target === currentPage);
+        });
+    }
 
     const menuToggle = document.querySelector(".menu-toggle");
     const headerRight = document.querySelector(".header-right");
