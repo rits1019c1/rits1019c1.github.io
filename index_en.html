@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="KGAR(RITSUTO) WEBSITE - 自作作品・プログラム・人工言語・世界観などを紹介するウェブサイト" />
+    <meta name="description" content="KGAR(RITSUTO) WEBSITE - works・programs・artificial languages・worldviews etc." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com" rel="stylesheet">
+
     <title>KGAR(RITSUTO) WEBSITE</title>
 
     <style>
@@ -28,10 +32,11 @@
         }
 
         body {
-            font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+            font-family: 'Playfair Display', serif;
             background: var(--background);
             color: var(--text);
             line-height: 1.7;
+            font-variant-ligatures: common-ligatures discretionary-ligatures;
         }
 
         a {
@@ -403,11 +408,10 @@
                 </h1>
 
                 <p class="hero-description">
-                    自分の作品、プログラム、
-                    人工言語、ゲーム、世界観などを紹介するためのホームページです。
+                    My works, programs, artificial languages, games, worldviews etc.
                 </p>
 
-                <a href="#works" class="button">作品を見る →</a>
+                <a href="#works" class="button">View Works →</a>
             </div>
         </div>
 
@@ -419,10 +423,11 @@
 
             <div class="about">
                 <div>
-                    <h3>このサイトについて</h3>
+                    <h3>About this site.</h3>
                     <p>
-                        こんにちは、kgar(rituto)です。<br /><br />
-                        このサイトでは、私が作成した人工言語、サイト、プログラム、ゲーム、世界観などを紹介してます。
+                        Hello, I'm kgar(rituto).<br /><br />
+                        This site introduces the artificial languages, websites, programs, games, worldviews, etc. that
+                        I have created.
                     </p>
                 </div>
 
@@ -437,13 +442,12 @@
                 </div>
 
                 <div>
-                    <h3>このサイトのライセンスについて</h3>
+                    <h3>License Information</h3>
                     <p>
-                        このサイトのソースコードは、
-                        MITライセンスで公開されています。<br />
-                        つまり、誰でも自由に
-                        このサイトのソースコードを利用することができます。<br /><br />
-                        ただし、このサイトに掲載されている画像、文章、人工言語、独自文字、その他の創作物については、ソースコードのMITライセンスの対象ではありません。(例外あり)
+                        The source code of this site is published under the MIT License.<br />
+                        In other words, anyone can freely use the source code of this site.<br /><br />
+                        However, images, texts, artificial languages, unique characters, and other creative works posted
+                        on this site are not subject to the MIT License for the source code. (Exceptions apply)
                     </p>
                 </div>
             </div>
@@ -466,9 +470,10 @@
 
             <div class="contact-box">
                 <h3>Let's Connect.</h3>
-                <p>SNS系のリンクを記載しています。</p>
+                <p>MY SNS </p>
 
-                <a href="https://note.com/kgar_1853" target="_blank" rel="noopener noreferrer" class="button">
+                <a href="https://note.com/kgar_1853" target="_blank" rel="noopener noreferrer" class="button"
+                    style="font-variant-ligatures: none;">
                     Note →
                 </a>
 
@@ -480,8 +485,9 @@
 
         <div class="side-note">
             <p>
-                これは<a href="https://shun240523-stack.github.io/shun-web/#works" target="_blank"
-                    rel="noopener noreferrer">shun</a>が制作したサイトを元に作ったサイトです。
+                This site is created based on a site made by <a
+                    href="https://shun240523-stack.github.io/shun-web/#works" target="_blank"
+                    rel="noopener noreferrer">shun</a>.
             </p>
         </div>
     </main>
@@ -509,21 +515,21 @@
             const works = [
                 {
                     title: "Shellup",
-                    description: "シェルアップ語は私とshunが作ってる言語です。　日本語の文法に近いです。",
+                    description: "Shellup is a language created by me and shun. It is similar to Japanese grammar.",
                     image: "./images/shellup.jpg",
                     link: "https://note.com/kgar_1853/n/n70a810493042",
                     category: "Language",
                 },
                 {
                     title: "SHUN WEBSITE",
-                    description: "私とともに言語や世界観を作ってる友達のサイトです。",
+                    description: "A website created by my friend shun, where we create languages and worldviews together.",
                     image: "images/test.png",
                     link: "https://shun240523-stack.github.io/shun-web/",
                     category: "Website",
                 },
                 {
-                    title: "東暦2045",
-                    description: "shunと私が作ってる世界のウェブサイトです。",
+                    title: "ec2045 WEBSITE",
+                    description: "A website created by my friend shun and me, where we explore unique worlds and ideas.",
                     image: "https://ec2045.github.io/symbols/疑問図鑑_001.png",
                     link: "https://ec2045.github.io",
                     category: "Website",
