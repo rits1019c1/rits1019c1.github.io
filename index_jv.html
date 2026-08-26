@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="jv">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="KGAR(RITSUTO) WEBSITE - Situs web sing nampilake karya, program, basa gawean, lan pandangan donya." />
+    <title>KGAR(RITSUTO) WEBSITE</title>
+
+    <style>
+        :root {
+            --background: #f5f5f5;
+            --surface: #ffffff;
+            --text: #222222;
+            --sub-text: #777777;
+            --border: #dddddd;
+            --accent: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            background: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 42px;
+            height: 42px;
+            padding: 9px 8px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: var(--surface);
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .lang-switcher {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .lang-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 72px;
+            height: 34px;
+            padding: 0 14px;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            color: var(--sub-text);
+            transition: all 0.2s ease;
+        }
+
+        .lang-link.active {
+            color: var(--text);
+            background: #eeeeee;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            font-size: 14px;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        nav a:hover {
+            opacity: 0.5;
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: calc(100vh - 70px);
+            display: flex;
+            align-items: center;
+            padding: 80px 8%;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-small {
+            color: var(--sub-text);
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 10vw, 120px);
+            line-height: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            color: var(--sub-text);
+            margin-bottom: 35px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 25px;
+            border: 1px solid var(--accent);
+            background: var(--accent);
+            color: #fff;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .button+.button {
+            margin-left: 12px;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            opacity: 0.8;
+        }
+
+        /* Section */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 40px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 60px;
+        }
+
+        .section-number {
+            color: var(--sub-text);
+            font-size: 13px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            letter-spacing: 0.1em;
+        }
+
+        /* About */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+        }
+
+        .about h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            color: var(--sub-text);
+        }
+
+        /* Works */
+        .works {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .work-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .work-image {
+            aspect-ratio: 16 / 10;
+            width: 100%;
+            overflow: hidden;
+            background: #dddddd;
+            position: relative;
+        }
+
+        .work-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .work-card:hover .work-image img {
+            transform: scale(1.05);
+        }
+
+        .image-error {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dddddd;
+            color: #666666;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+        }
+
+        .work-content {
+            padding: 25px;
+        }
+
+        .work-category {
+            color: var(--sub-text);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+        }
+
+        .work-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .work-content p {
+            color: var(--sub-text);
+            font-size: 14px;
+        }
+
+        .work-link {
+            display: inline-block;
+            margin-top: 18px;
+            font-size: 13px;
+            font-weight: bold;
+            border-bottom: 1px solid var(--text);
+        }
+
+        /* Contact */
+        .contact-box {
+            padding: 60px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+
+        .contact-box h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            color: var(--sub-text);
+            margin-bottom: 25px;
+        }
+
+        /* Footer */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px;
+            background: var(--text);
+            color: #fff;
+            font-size: 13px;
+        }
+
+        .side-note {
+            margin: 40px auto;
+            padding: 20px;
+            max-width: 800px;
+            border: 1px solid #ddd;
+            background: #fafafa;
+            color: #650;
+            font-size: 13px;
+        }
+
+        @media (max-width: 800px) {
+            header {
+                position: relative;
+                padding: 0 20px;
+                height: 70px;
+                gap: 12px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .header-right {
+                display: none;
+                position: absolute;
+                top: calc(100% + 8px);
+                left: 20px;
+                right: 20px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+                padding: 18px 16px;
+                background: rgba(255, 255, 255, 0.97);
+                border: 1px solid var(--border);
+                box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            }
+
+            .header-right.open {
+                display: flex;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 12px;
+                width: 100%;
+            }
+
+            .lang-switcher {
+                flex-wrap: wrap;
+                justify-content: center;
+                border-radius: 18px;
+            }
+
+            .lang-link {
+                flex: 1 1 30%;
+                min-width: auto;
+            }
+
+            .hero {
+                padding: 60px 25px;
+            }
+
+            section {
+                padding: 80px 25px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .works {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-box {
+                padding: 35px 25px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="#top" class="logo">KGAR(RITSUTO) WEBSITE</a>
+
+        <button type="button" class="menu-toggle" aria-label="Aksen menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="header-right">
+            <nav aria-label="Menu Utama">
+                <a href="#about">ABOUT</a>
+                <a href="#works">WORKS</a>
+                <a href="#contact">CONTACT</a>
+            </nav>
+
+            <div class="lang-switcher" aria-label="Pilih Basa">
+                <a href="index.html" class="lang-link" aria-label="Basa Jepang">Japanese</a>
+                <a href="index_jv.html" class="lang-link active" aria-label="Basa Jawa">Javanese</a>
+                <a href="index_en.html" class="lang-link" aria-label="Basa Inggris">English</a>
+                <a href="index_sp.html" class="lang-link" aria-label="Basa Shellup">Shellup</a>
+                <a href="index_fakezh.html" class="lang-link" aria-label="Basa Cina Palsu">偽中国語</a>
+                <a href="index_zh.html" class="lang-link" aria-label="Basa Cina">中文</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="top">
+        <div class="hero">
+            <div class="hero-content">
+                <p class="hero-small">WELCOME TO KGAR(RITSUTO) WEBSITE</p>
+
+                <h1>
+                    KGAR(RITSUTO)<br />
+                    WEBSITE
+                </h1>
+
+                <p class="hero-description">
+                    Situs web iki kanggo ngenalake karya, program, basa gawean, game, lan pandangan donya sing wis tak
+                    gawe.
+                </p>
+
+                <a href="#works" class="button">Deleng Karya →</a>
+            </div>
+        </div>
+
+        <section id="about">
+            <div class="section-title">
+                <span class="section-number">01</span>
+                <h2>ABOUT</h2>
+            </div>
+
+            <div class="about">
+                <div>
+                    <h3>Bab Situs Iki</h3>
+                    <p>
+                        Sugeng rawuh, kula kgar(ritsuto).<br /><br />
+                        Ing situs iki, kula nampilake basa gawean, situs web, program, game, lan pandangan donya sing
+                        wis tak gawe.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>PROFIL</h3>
+                    <p>
+                        ASMANIPUN : KGAR(RITSUTO) <br />
+                        BIDANG : PROGRAMMING / CREATIVE / ART <br />
+                        LOKASI : JEPANG <br />
+                        BASA SING BISA DIGUNAKAKE : BASA JEPANG / BASA INGGRIS / <a href="#works">SHELLUP</a>
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Bab Lisensi Situs Iki</h3>
+                    <p>
+                        Kode sumber situs iki dibukak kanthi Lisensi MIT.<br />
+                        Tegese, sapa wae bisa nggunakake kode sumber situs iki kanthi bebas.<br /><br />
+                        Nanging, gambar, teks, basa gawean, aksara khusus, lan karya kreatif liyane ing situs iki ora
+                        kalebu ing Lisensi MIT kode sumber. (ana pangecualian)
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="works">
+            <div class="section-title">
+                <span class="section-number">02</span>
+                <h2>WORKS</h2>
+            </div>
+
+            <div class="works"></div>
+        </section>
+
+        <section id="contact">
+            <div class="section-title">
+                <span class="section-number">03</span>
+                <h2>CONTACT</h2>
+            </div>
+
+            <div class="contact-box">
+                <h3>Let's Connect.</h3>
+                <p>Nampilake pranala menyang media sosial.</p>
+
+                <a href="https://note.com/kgar_1853" target="_blank" rel="noopener noreferrer" class="button">
+                    Note →
+                </a>
+
+                <a href="https://github.com/rits1019c1" target="_blank" rel="noopener noreferrer" class="button">
+                    GitHub →
+                </a>
+            </div>
+        </section>
+
+        <div class="side-note">
+            <p>
+                Situs iki digawe adhedhasar situs sing digawe dening <a
+                    href="https://shun240523-stack.github.io/shun-web/" target="_blank"
+                    rel="noopener noreferrer">shun</a>.
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 KGAR(RITSUTO) WEBSITE</p>
+        <a href="#top">BALI MENYANG DHUWUR ↑</a>
+    </footer>
+
+    <script src="./index.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const worksContainer = document.querySelector(".works");
+
+            if (!worksContainer) return;
+
+            const works = [
+                {
+                    title: "Shellup",
+                    description: "Basa Shellup yaiku basa sing digawe dening kula lan shun. Basa iki cedhak karo tata basa Jepang.",
+                    image: "./images/shellup.jpg",
+                    link: "https://note.com/kgar_1853/n/n70a810493042",
+                    category: "Language",
+                },
+                {
+                    title: "SHUN WEBSITE",
+                    description: "Situs web kanca sing nggawe basa lan pandangan donya bareng kula.",
+                    image: "images/test.png",
+                    link: "https://shun240523-stack.github.io/shun-web/",
+                    category: "Website",
+                },
+                {
+                    title: "東暦2045",
+                    description: "Situs web babagan donya sing digawe dening shun lan kula.",
+                    image: "https://ec2045.github.io/symbols/疑問図鑑_001.png",
+                    link: "https://ec2045.github.io",
+                    category: "Website",
+                },
+            ];
+
+            const createErrorPlaceholder = (img) => {
+                const errorDiv = document.createElement("div");
+                errorDiv.className = "image-error";
+                errorDiv.textContent = "IMAGE NOT FOUND";
+                img.parentNode.replaceChild(errorDiv, img);
+            };
+
+            const createWorkCard = (work) => {
+                const article = document.createElement("article");
+                article.className = "work-card";
+
+                article.innerHTML = `
+<div class="work-image">
+<img src="${work.image}" alt="${work.title}" loading="lazy" />
+</div>
+
+<div class="work-content">
+<p class="work-category">${work.category || "No category"}</p>
+<h3>${work.title}</h3>
+<p>${work.description}</p>
+<a href="${work.link}" class="work-link" target="_blank" rel="noopener noreferrer">
+${work.link ? "VIEW PROJECT →" : "Not available"}
+</a>
+</div>
+`;
+
+                const img = article.querySelector("img");
+                if (img) {
+                    img.addEventListener("error", () => createErrorPlaceholder(img));
+                }
+
+                return article;
+            };
+
+            works.forEach((work) => {
+                worksContainer.appendChild(createWorkCard(work));
+            });
+        });
+    </script>
+</body>
+
+</html>
